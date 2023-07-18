@@ -1,4 +1,4 @@
-service: serverless-node-aws
+service: serverless-node-aws-class
 frameworkVersion: '3'
 
 provider:
