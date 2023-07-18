@@ -1,0 +1,25 @@
+service: serverless-node-aws
+frameworkVersion: '3'
+
+provider:
+  name: aws
+  runtime: nodejs18.x
+  stage: ${opt:stage, 'development'}
+  apiName: ${self:service}-${self:provider.stage}
+  region: sa-east-1
+  memorySize: 128
+  timeout: 30
+  environment:
+    LOG_LEVEL: debug
+
+functions:
+  api:
+    handler: src/index.handler
+    events:
+      - httpApi:
+          path: /
+          method: get
+
+plugins:
+  - serverless-offline
+  - serverless-plugin-typescript
